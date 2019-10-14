@@ -1,0 +1,168 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf600
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 Helvetica-Bold;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww17320\viewh27400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+
+\f0\fs36 \cf0 Assignment: Books/Authors (Shell)\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\b\fs28 \cf0 \ul \ulc0 1. Query: Create 5 books with the following names: C sharp, Java, Python, PHP, Ruby
+\f0\b0 \ulnone \
+	-Book.objects.create(title="C Sharp")\
+	-Book.objects.create(title="Java")\
+	-Book.objects.create(title="Python")\
+	-Book.objects.create(title="PHP")\
+	-Book.objects.create(title="Ruby")\
+	\
+
+\f1\b \ul 2. Query: Create 5 different authors: Jane Austen, Emily Dickinson, Fyodor Dostoevksy, William Shakespeare, Lau Tzu
+\f0\b0 \ulnone \
+	-Author.objects.create(first_name="Jane", last_name="Austen")\
+	-Author.objects.create(first_name="Emily", last_name="Dickinson")\
+	-Author.objects.create(first_name="Fyodor", last_name="Dostoevksy")\
+	-Author.objects.create(first_name="William", last_name="Shakespeare")\
+	-Author.objects.create(first_name="Lau", last_name="Tzu")\
+\
+
+\f1\b \ul 3. Add a new text field in the authors table called \'91notes\'92
+\f0\b0 \ulnone \
+	 - Did that with giving it a default value of \'93notes*\'94\
+\
+
+\f1\b \ul 4. Create and run the migration files to update the table in your database.
+\f0\b0 \ulnone \
+	-Did that and I received no errors because I gave it a default value.\
+\
+
+\f1\b \ul 5. Query: Change the name of the C Sharp book to C#
+\f0\b0 \ulnone \
+	-Book.objects.all()\
+	-c_sharp = Book.objects.get(id=1)\
+	-c_sharp.title="C#"\
+	-c_sharp.save()\
+	-Book.objects.get(id=1)\
+\
+
+\f1\b \ul 6. Query: Change the first name of the 4th author to Bill
+\f0\b0 \ulnone \
+	-Author.objects.all()\
+	-author_4 = Author.objects.get(id=4)\
+	-author_4.first_name="Bill"\
+	-author_4.save()\
+	-Author.objects.get(id=4)\
+\
+
+\f1\b \ul 7. Query: Assign the first author to the first 2 books
+\f0\b0 \ulnone \
+	-auth_1 = Author.objects.get(id=1)\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0  	-auth_1.save()\
+ 	-bk_1 = Book.objects.get(id=1)\
+ 	-bk_1.save()\
+ 	-bk_2 = Book.objects.get(id=2)\
+ 	-bk_2.save()\
+   	-bk_1.authors.add(auth_1)\
+    bk_2.authors.add(auth_1)\
+      auth_1.book.all().values()\
+\
+
+\f1\b \ul 8. Query: Assign the second author to the first 3 books
+\f0\b0 \ulnone \
+	-auth_2 = Author.objects.get(id=2)\
+	-auth_2.save()\
+	-bk_3 = Book.objects.get(id=3)\
+	-bk_3.save()\
+	-bk_1.authors.add(auth_2)\
+	-bk_2.authors.add(auth_2)\
+	-bk_3.authors.add(auth_2)\
+	-auth_2.books.all()\
+EXTRA: TO DISPLAY 2nd Authors Book Titles\
+	auth2_books = auth_2.books.all()\
+	for i in auth2_books:\
+		print(i.title)\
+	Receive: C#, Java, Python\
+\
+
+\f1\b \ul 9. Query: Assign the third author to the first 4 books
+\f0\b0 \ulnone \
+	-auth_3 = Author.objects.get(id=3)\
+	-auth_3.save()\
+	-bk_4 = Book.objects.get(id=4)\
+	-bk_1.authors.add(auth_3)\
+	-bk_2.authors.add(auth_3)\
+	-bk_3.authors.add(auth_3)\
+	-bk_4.authors.add(auth_3)\
+	auth_3.books.all()\
+EXTRA: TO DISPLAY 3rd Authors Book Titles\
+	auth3_books = auth_3.books.all()\
+	for i in auth3_books:\
+		print(i.title)\
+	Receive: C#, Java, Python, PHP\
+\
+
+\f1\b \ul 10. Query: Assign the fourth author to the first 5 books (all of them)
+\f0\b0 \ulnone \
+	auth_4 = Author.objects.get(id=4)\
+	bk_5 = Book.objects.get(id=5)\
+	bk_1.authors.add(auth_4)\
+	bk_2.authors.add(auth_4)\
+	bk_3.authors.add(auth_4)\
+	bk_4.authors.add(auth_4)\
+	bk_5.authors.add(auth_4)\
+	auth_4.books.all()\
+EXTRA: TO DISPLAY 4th Authors Book Titles\
+	auth4_books = auth_4.books.all()\
+	for i in auth4_books:\
+		print(i.title)\
+	Receive: C#, Java, Python, PHP, Ruby\
+\
+
+\f1\b \ul 11. Query: Retrieve all the authors for the third book
+\f0\b0 \ulnone \
+	auth3_books = auth_3.books.all()\
+	for i in auth3_books:\
+		print(i.title)\
+	Receive: C#, Java, Python, PHP\
+\
+
+\f1\b \ul 12. Query: Remove the first author of the 3rd book
+\f0\b0 \ulnone \
+	-auth_1.books.remove(bk_3)\
+	-auth_1.books.all()\
+\
+
+\f1\b \ul 13. Query: Add the 5th author as one of the authors of the 2nd book
+\f0\b0 \ulnone \
+	auth_5 = Author.objects.get(id=5)         - Assign auth_5 to be Author with id=5\
+	auth_5                                                    -Check to see if auth_5 returns with author 5\'92s data\
+	auth_5.books.all()                                  -We get none\
+	auth_5.books.add(bk_2)                       -Add 5th author as one of the authors for the 2nd book\
+	auth_5.books.all()                                 -Check to make sure it was successfully added.\
+\
+
+\f1\b \ul 14. Query: Find all the books that the 3rd author is part of
+\f0\b0 \ulnone \
+	auth_3.books.all()\
+\
+
+\f1\b \ul 15. Query: Find all the authors that contributed to the 5th book
+\f0\b0 \ulnone \
+	bk_5.authors.all()\
+		It checks out because on number 10. We assigned the 4th author to all 5 books.\
+	\
+	\
+\
+\
+\
+\
+\
+\
+\
+\
+	\
+	\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 	}

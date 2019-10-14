@@ -1,0 +1,20 @@
+.label-size {
+    font-size: 18px;
+}
+
+.no-resize {
+    overflow-y: hidden;
+    resize: none;
+}
+
+.add-margin-book{
+    margin-left: 113px;
+}
+
+.add-margin-author{
+    margin-left: 116.5px;
+}
+
+.author-margin {
+    margin-right: 150px;
+}
